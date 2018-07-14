@@ -3,14 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../components/model/user.model';
 import { HELP_DESK_API } from './helpdesk.api';
 
-// @Injectable({providedIn: 'root'})
 @Injectable()
 export class UserService {
 
-	constructor(
-			private http: HttpClient,
-	) {
-	}
+	constructor(private http: HttpClient) {}
 
 	login(user: User) {
 		return this.http.post(`${HELP_DESK_API}/api/auth`, user);
