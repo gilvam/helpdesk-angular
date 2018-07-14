@@ -27,7 +27,7 @@ export class TicketService {
 		return this.http.get(`${HELP_DESK_API}/api/ticket/${page}/${count}`);
 	}
 
-	findById(id: string) {
+	delete(id: string) {
 		return this.http.delete(`${HELP_DESK_API}/api/ticket/${id}`);
 	}
 
