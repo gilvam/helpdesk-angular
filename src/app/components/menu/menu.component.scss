@@ -1,0 +1,38 @@
+aside.main-sidebar {
+	> a {
+		text-align: center;
+		> span {
+			&.brand-text {
+				font-weight: bold !important;
+			}
+		}
+	}
+
+	> div.sidebar {
+		> nav {
+			> ul.nav {
+				> li.nav-item {
+					> a.nav-link {
+						text-align: left;
+						> i.nav-icon {
+						}
+						> p {
+							> i.right {
+							}
+						}
+					}
+					> ul.nav {
+						> li.nav-item {
+							> a.nav-link {
+								> i.fa {
+								}
+								> p {
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
