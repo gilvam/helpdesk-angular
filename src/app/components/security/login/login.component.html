@@ -1,3 +1,58 @@
-<p>
-  login works!
-</p>
+<div class="col-md-4 offset-md-4">
+	<div class="box box-info">
+		<div class="box-header with-border">
+			<h3 class="box-title">Horizontal Form</h3>
+		</div>
+		<form #form="ngForm" (ngSubmit)="login()">
+			<div class="box-body">
+				<div class="form-group">
+					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+					<div class="col-sm-12">
+						<input
+								[ngClass]="getFromGroupClass(email.invalid, email.dirty)"
+								class="form-control"
+								[(ngModel)]="user.email"
+								#email="ngModel"
+								name="email"
+								type="email"
+								id="inputEmail"
+								placeholder="Email"
+								email>
+						<span class="invalid-feedback" *ngIf="email.invalid && email.dirty">Email is invalid</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+
+					<div class="col-sm-12">
+						<input
+								[ngClass]="getFromGroupClass(password.invalid, password.dirty)"
+								class="form-control"
+								[(ngModel)]="user.password"
+								#password="ngModel"
+								name="password"
+								type="password"
+								id="inputPassword"
+								placeholder="Password"
+								required>
+						<span class="help-desk" *ngIf="password.invalid && password.dirty">Password is invalid</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> Remember me
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-default" (click)="cancelLogin()">Cancel</button>
+				<button type="submit" class="btn btn-info pull-right" [disabled]="form.invalid">Login</button>
+			</div>
+		</form>
+	</div>
+</div>
