@@ -1,0 +1,82 @@
+<div class="col-md-6 offset-md-3">
+	<div class="box box-info">
+		<div class="box-header with-border">
+			<h3 class="box-title">New ticket</h3>
+		</div>
+		<form #form="ngForm" (ngSubmit)="register()">
+			<div class="col-md-12 p-3">
+				<div [ngClass]="classCss" role="alert" *ngIf="message">
+					<strong>{{message.text}}</strong>
+				</div>
+			</div>
+
+			<div class="box-body">
+				<div class="form-group">
+					<label for="inputTitle" class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-12">
+						<input
+								[ngClass]="getFromGroupClass(title.invalid, title.dirty)"
+								class="form-control"
+								[(ngModel)]="ticket.title"
+								#title="ngModel"
+								name="title"
+								type="text"
+								id="inputTitle"
+								placeholder="Title"
+								required>
+						<span class="invalid-feedback" *ngIf="title.invalid && title.dirty">Title is required</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPriority" class="col-sm-2 control-label">Priority</label>
+					<div class="col-sm-12">
+						<select
+								[ngClass]="getFromGroupClass(priority.invalid, priority.dirty)"
+								class="form-control"
+								[(ngModel)]="ticket.priority"
+								#priority="ngModel"
+								name="priority"
+								type="priority"
+								id="inputPriority"
+								placeholder="Priority"
+								required>
+							<option>High</option>
+							<option>Normal</option>
+							<option>Low</option>
+						</select>
+						<span class="help-desk" *ngIf="priority.invalid && priority.dirty">Priority is required</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDescription" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-12">
+						<textarea
+								[ngClass]="getFromGroupClass(description.invalid, description.dirty)"
+								class="form-control"
+								[(ngModel)]="ticket.description"
+								#description="ngModel"
+								name="description"
+								rows="3"
+								type="text"
+								id="inputDescription"
+								placeholder="Description"
+								required>
+						</textarea>
+						<span class="invalid-feedback" *ngIf="description.invalid && description.dirty">Description is required</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputImage" class="col-sm-2 control-label">Image</label>
+				<div class="col-sm-10">
+					<img [src]="ticket.image" width="50%" height="50%" alt="image ticket">
+					<input type="file" id="inputImage" (change)="onFileChange($event)">
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-info pull-right" [disabled]="form.invalid">Save</button>
+			</div>
+		</form>
+	</div>
+</div>
