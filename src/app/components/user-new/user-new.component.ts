@@ -70,9 +70,9 @@ export class UserNewComponent implements OnInit {
 		console.log('message: ', message);
 		this.message = message;
 		this.buildClasses(message.type);
-		// setTimeout(() => {
-		// 	this.message = undefined;
-		// }, 3000);
+		setTimeout(() => {
+			this.message = undefined;
+		}, 3000);
 	}
 
 	private buildClasses(type: string): void {
@@ -81,5 +81,4 @@ export class UserNewComponent implements OnInit {
 		};
 		this.classCss['alert-' + type] = true;
 	}
-
 }
