@@ -1,12 +1,12 @@
-<div class="col-md-4 offset-md-4">
+<div class="col-md-6 offset-md-3">
 	<div class="box box-info">
 		<div class="box-header with-border">
-			<h3 class="box-title">Help Desk | login</h3>
+			<h3 class="box-title">New user</h3>
 		</div>
-		<form #form="ngForm" (ngSubmit)="login()">
+		<form #form="ngForm" (ngSubmit)="register()">
 			<div class="col-md-12 p-3">
-				<div class="alert alert-error" role="alert" *ngIf="message">
-					<strong>Invalid email or password</strong>
+				<div [ngClass]="classCss" role="alert" *ngIf="message">
+					<strong>{{message.text}}</strong>
 				</div>
 			</div>
 
@@ -15,7 +15,6 @@
 					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-12">
 						<input
-								[ngClass]="getFromGroupClass(email.invalid, email.dirty)"
 								class="form-control"
 								[(ngModel)]="user.email"
 								#email="ngModel"
@@ -31,7 +30,6 @@
 					<label for="inputPassword" class="col-sm-2 control-label">Password</label>
 					<div class="col-sm-12">
 						<input
-								[ngClass]="getFromGroupClass(password.invalid, password.dirty)"
 								class="form-control"
 								[(ngModel)]="user.password"
 								#password="ngModel"
@@ -43,10 +41,28 @@
 						<span class="help-desk" *ngIf="password.invalid && password.dirty">Password is invalid</span>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="inputProfile" class="col-sm-2 control-label">Profile</label>
+					<div class="col-sm-12">
+						<select
+								class="form-control"
+								[(ngModel)]="user.profile"
+								#profile="ngModel"
+								name="profile"
+								type="profile"
+								id="inputProfile"
+								placeholder="Profile"
+								required>
+							<option>ROLE_ADMIN</option>
+							<option>ROLE_CUSTOMER</option>
+							<option>ROLE_TECHNICIAN</option>
+						</select>
+						<span class="help-desk" *ngIf="profile.invalid && profile.dirty">Profile is invalid</span>
+					</div>
+				</div>
 			</div>
 			<div class="box-footer">
-				<button type="submit" class="btn btn-default" (click)="cancelLogin()">Cancel</button>
-				<button type="submit" class="btn btn-info pull-right" [disabled]="form.invalid">Login</button>
+				<button type="submit" class="btn btn-info pull-right" [disabled]="form.invalid">Register</button>
 			</div>
 		</form>
 	</div>
