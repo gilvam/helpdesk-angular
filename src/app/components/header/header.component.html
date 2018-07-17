@@ -1,9 +1,19 @@
-<!-- Navbar -->
-<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-	<!-- Left navbar links -->
-	<ul class="navbar-nav">
-		<li class="nav-item">
-			<a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-		</li>
-	</ul>
-</nav>
+<header class="main-header">
+	<!-- Navbar -->
+	<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+		<!-- Left navbar links -->
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+			</li>
+		</ul>
+
+		<div class="navbar-custom-menu pull-right" style="font-size: 10px; position: absolute; right: 0px;">
+			<span class="hidden-xs">
+				{{shared?.user?.email}} - {{shared?.user?.profile}} |
+				<button class="btn btn-link" style="font-size: 12px;" (click)="signOut()">Sign out
+				</button>
+			</span>
+		</div>
+	</nav>
+</header>

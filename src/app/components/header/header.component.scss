@@ -1,0 +1,16 @@
+@media (min-width: 768px){
+	.content-wrapper, .main-footer, .main-header {
+		margin-left: 115px;
+	}
+}
+
+@media (max-width: 991.98px){
+	.content-wrapper,
+	.content-wrapper:before,
+	.main-footer,
+	.main-footer:before,
+	.main-header,
+	.main-header:before{
+		margin-left: 0 !important;
+	}
+}

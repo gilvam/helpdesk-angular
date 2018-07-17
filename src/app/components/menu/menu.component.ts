@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+	selector: 'app-menu',
+	templateUrl: './menu.component.html',
+	styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+	shared: SharedService;
 
-  ngOnInit() {
-  }
+	constructor() {
+		this.shared = SharedService.getInstance();
+	}
+
+	ngOnInit() {
+	}
 
 }

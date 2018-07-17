@@ -7,8 +7,9 @@
 	<div class="sidebar">
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
 				<!--user-->
-				<li class="nav-item has-treeview">
+				<li class="nav-item has-treeview" *ngIf="shared?.user?.profile == 'ADMIN'">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-user"></i>
 						<p>User
@@ -32,7 +33,7 @@
 				</li>
 
 				<!--ticket-->
-				<li class="nav-item has-treeview">
+				<li class="nav-item has-treeview" *ngIf="shared?.user?.profile != 'ADMIN'">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-ticket"></i>
 						<p>Ticket
@@ -40,14 +41,14 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item">
+						<li class="nav-item" *ngIf="shared?.user?.profile == 'CUSTOMER'">
 							<a [routerLink]="['/ticket-new']" class="nav-link">
 								<i class="fa fa-circle-o nav-icon"></i>
 								<p>New ticket</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
+							<a [routerLink]="['/ticket-list']" class="nav-link">
 								<i class="fa fa-circle-o nav-icon"></i>
 								<p>List</p>
 							</a>
@@ -65,15 +66,9 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="#" class="nav-link">
+							<a [routerLink]="['/summary']" class="nav-link" (click)="signOut()">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>List</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>New summary</p>
+								<p>To view</p>
 							</a>
 						</li>
 					</ul>
