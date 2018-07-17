@@ -1,0 +1,76 @@
+<div class="col-md-10 offset-md-1">
+	<div class="box box-info">
+		<div class="box-header with-border">
+			<h3>Detail Ticket</h3>
+		</div>
+
+		<form class="form-horizontal">
+			<div class="col-md-12 p-3">
+				<div [ngClass]="classCss" role="alert" *ngIf="message">
+					<strong>{{message.text}}</strong>
+				</div>
+			</div>
+
+			<div class="box-body">
+				<ul class="list-group list-group-unbordered">
+					<li class="list-group-item">
+						<b>Number: </b> <span>{{ticket.number}}</span>
+						<span class="pull-right"><b>Title:</b> {{ticket.title}}</span>
+					</li>
+					<li class="list-group-item">
+						<b>Priority: </b> <span>{{ticket.priority}}</span>
+						<span class="pull-right"><b>Create by:</b> {{ticket?.user?.email}}</span>
+					</li>
+					<li class="list-group-item">
+						<b>Status: </b> <span>{{ticket.status}}</span>
+						<span class="pull-right"><b>Create by:</b> {{ticket?.assignedUser?.email}}</span>
+					</li>
+					<li class="list-group-item">
+						<b>Date: </b> <span>{{ticket.date | date: 'dd/MM/yyyy'}}</span>
+						<span class="pull-right"><b>Description:</b> {{ticket.description}}</span>
+					</li>
+					<li class="list-group-item">
+						<span><img [src]="ticket.image" width="300px" alt="ticket image"></span>
+						<span class="pull-right">
+							<table class="table table-bordered">
+								<tr>
+									<th>User Change</th>
+									<th>User Change Status</th>
+									<th>Status</th>
+								</tr>
+								<tr *ngFor="let change of ticket.changes">
+									<td>{{change?.userChange.email}}</td>
+									<td>{{change?.dateChangeStatus | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+									<td>{{change?.status}}</td>
+								</tr>
+							</table>
+						</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="box-footer">
+				<button (click)="changeStatus('Assigned')"
+						*ngIf="shared.user.profile == 'TECHNICIAN' && ticket.status == 'New'"
+						class="btn btn-sm btn-danger" > Accept </button>
+
+				<button (click)="changeStatus('Resolved')"
+						*ngIf="shared.user.profile == 'TECHNICIAN' && (ticket.status == 'Assigned' || ticket.status == 'Disapproved')"
+						class="btn btn-sm btn-danger" >Solve</button>
+
+				<button (click)="changeStatus('Approved')"
+						*ngIf="shared.user.profile == 'CUSTOMER' && (ticket.status == 'Resolved')"
+						class="btn btn-sm btn-danger" >Approve</button>
+
+				<button (click)="changeStatus('Disapproved')"
+						*ngIf="shared.user.profile == 'CUSTOMER' && (ticket.status == 'Resolved')"
+						class="btn btn-sm btn-danger" >Disapprove</button>
+
+				<button (click)="changeStatus('Closed')"
+						*ngIf="shared.user.profile == 'TECHNICIAN' && (ticket.status == 'Approved')"
+						class="btn btn-sm btn-danger" >Close</button>
+			</div>
+		</form>
+
+	</div>
+</div>
